@@ -1,0 +1,26 @@
+<!-- public/logo.svg -->
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer circle with gradient -->
+  <circle cx="60" cy="60" r="58" fill="url(#gradient)" stroke="url(#borderGradient)" strokeWidth="2"/>
+  
+  <!-- M letter design -->
+  <path d="M45 40V80M45 40L60 60M45 40L30 60M75 40V80M75 40L60 60M75 40L90 60" 
+        stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+  
+  <!-- Systems text arc -->
+  <path d="M30 85A30 30 0 0 1 90 85" stroke="white" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+  <text x="60" y="90" textAnchor="middle" fill="white" fontSize="8" fontFamily="Arial, sans-serif" fontWeight="500">
+    SYSTEMS
+  </text>
+  
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#3b82f6"/>
+      <stop offset="100%" stopColor="#10b981"/>
+    </linearGradient>
+    <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#60a5fa"/>
+      <stop offset="100%" stopColor="#34d399"/>
+    </linearGradient>
+  </defs>
+</svg>

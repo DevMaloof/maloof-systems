@@ -1,16 +1,12 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -24,83 +20,49 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <head>
-        {/* Force dark mode */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                // Force dark mode
-                document.documentElement.classList.add('dark');
-                
-                // Check if user prefers light mode but we still want dark
-                const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
-                if (prefersLight.matches) {
-                  document.documentElement.classList.add('dark'); // Still use dark
-                }
-                
-                // Store theme preference
-                localStorage.setItem('theme', 'dark');
-              })();
-            `,
-          }}
-        />
+    <html lang="en" className="dark">
+      <body className={`${inter.className} bg-gray-950 text-gray-100 min-h-screen`}>
+        {/* Simple gradient background */}
+        <div className="fixed inset-0 -z-10 bg-linear-to-br from-gray-900 via-gray-950 to-black" />
 
-        {/* Add float animation styles */}
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-              @keyframes float {
-                0%, 100% {
-                  transform: translateY(0px) translateX(0px);
-                }
-                25% {
-                  transform: translateY(-20px) translateX(10px);
-                }
-                50% {
-                  transform: translateY(-10px) translateX(-10px);
-                }
-                75% {
-                  transform: translateY(-30px) translateX(5px);
-                }
-              }
-            `,
-          }}
-        />
-      </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans bg-gray-950 text-gray-100 antialiased overflow-x-hidden`}>
-        {/* Background Elements */}
-        <div className="fixed inset-0 -z-10 overflow-hidden">
-          {/* Main gradient background */}
-          <div className="absolute inset-0 bg-linear-to-br from-gray-900 via-gray-950 to-black" />
+        {/* Simple Navigation */}
+        <header className="fixed top-0 left-0 right-0 z-50 border-gray-800 bg-gray-800 bg-opacity-80 backdrop-blur-md shadow-md ">
+          <div className="container mx-auto px-4 py-4">
+            <div className="flex items-center justify-between">
+              <Link href="/" className="flex items-center space-x-3 group">
+                <div className="relative">
+                  {/* Gradient border */}
+                  <div className="absolute -inset-1 bg-linear-to-r from-blue-500 to-emerald-500 rounded-full blur-sm" />
 
-          {/* Grid pattern overlay */}
-          <div className="absolute inset-0 opacity-10 grid-pattern" />
+                  {/* Image container */}
+                  <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-gray-900">
+                    <img
+                      src="/Logo.png"
+                      alt="Logo"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                <span className="text-xl font-bold text-white ml-4 group-hover:text-blue-400 transition-colors">
+                  Maloof's Systems
+                </span>
+              </Link>
 
-          {/* Animated gradient orbs */}
-          <div className="absolute top-1/4 left-1/4 w-125 h-125 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-125 h-125 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-2000" />
-
-          {/* Floating particles */}
-          <div className="absolute inset-0">
-            {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-1 h-1 rounded-full bg-linear-to-r from-blue-400/20 to-emerald-400/20"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animation: `float ${3 + Math.random() * 2}s ease-in-out infinite`,
-                  animationDelay: `${Math.random() * 2}s`,
-                }}
-              />
-            ))}
+              <nav className="hidden md:flex items-center space-x-8">
+                <Link href="/" className="text-gray-50 font-extrabold hover:text-white transition-colors">
+                  Home
+                </Link>
+                <Link href="/team" className="text-gray-50 font-extrabold hover:text-white transition-colors">
+                  Team
+                </Link>
+                <Link href="/contact" className="text-gray-50 font-extrabold hover:text-white transition-colors">
+                  Contact
+                </Link>
+              </nav>
+            </div>
           </div>
-        </div>
+        </header>
 
-        {/* Main content */}
         {children}
       </body>
     </html>
