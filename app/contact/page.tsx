@@ -12,10 +12,10 @@ export default function ContactPage() {
         {
             icon: "📧",
             title: "Email",
-            value: "maloofsystems@gmail.com",
+            value: "developermaloof@gmail.com",
             description: "For direct inquiries and project discussions",
             action: () => {
-                window.location.href = "mailto:maloofsystems@gmail.com"
+                window.location.href = "mailto:developermaloof@gmail.com"
             }
         },
         {
@@ -28,7 +28,7 @@ export default function ContactPage() {
             value: "linkedin.com/company/maloof-systems",
             description: "Connect professionally and see our work",
             action: () => {
-                window.open("https://linkedin.com/company/maloof-systems", "_blank")
+                window.open("https://www.linkedin.com/in/syed-maloof-6693b7372/", "_blank")
             }
         },
         {
